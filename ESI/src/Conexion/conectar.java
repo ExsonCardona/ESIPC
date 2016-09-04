@@ -12,7 +12,7 @@ Connection conect = null;
              
            
            Class.forName("com.mysql.jdbc.Driver");
-           conect = DriverManager.getConnection("jdbc:mysql://localhost/bderickson","root","");
+           conect = DriverManager.getConnection("jdbc:mysql://localhost/esicurso","system","erickson");
            } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error "+e);
         }
