@@ -24,7 +24,7 @@
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="maximizable" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="CLIENTES"/>
+    <Property name="title" type="java.lang.String" value="Registro de Estudiantes"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -168,7 +168,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Nuevoo (2).png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Registrar Clientes"/>
+            <Property name="text" type="java.lang.String" value="Registar Estudiantes"/>
             <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/Nuevoo (1).png"/>
             </Property>

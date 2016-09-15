@@ -1,7 +1,7 @@
 
 package Formularios;
 
-import claseConectar.conectar;
+import Conexion.conectar;
 import java.sql.*;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
@@ -16,29 +16,29 @@ DefaultTableModel modelo;
     }
     void mostrarclientes(String valor)
     {
-        String[]titulos={"Codigo","Nombres","Apellidos","Sexo","DNI","Telefono","RUC","Email","Direccion"} ;  
-        String []registros= new String[9];
+        String[]titulos={"Carne","Nombre","Fecha Nacimiento","Telefono","Direccion","DPI","EMAIL","NIT"} ;  
+        String []registros= new String[8];
         modelo=new DefaultTableModel(null,titulos);
-        String Sql="SELECT * FROM cliente WHERE CONCAT(cod_cli,nom_cli,ape_cli,nit_cli) LIKE '%"+valor+"%'";
+        String Sql="SELECT * FROM estudiante WHERE CONCAT(carne,Nombre,Fecha_nac,Telefono,Direccion,DPI,email,NIT) LIKE '%"+valor+"%'";
        
         try {
              Statement st = cn.createStatement();
              ResultSet rs = st.executeQuery(Sql);
              while(rs.next())
              {
-                 registros[0]=rs.getString("cod_cli");
-                registros[1]=rs.getString("nom_cli");  
-                registros[2]=rs.getString("ape_cli");
-                registros[3]=rs.getString("sexo_cli");
-                registros[4]=rs.getString("nit_cli");
-                registros[5]=rs.getString("tel_cli");
-                registros[6]=rs.getString("email_cli");
-                registros[7]=rs.getString("dir_cli");
+                registros[0]=rs.getString("carne");
+                registros[1]=rs.getString("Nombre");  
+                registros[2]=rs.getString("Fecha_nac");
+                registros[3]=rs.getString("Telefono");
+                registros[4]=rs.getString("Direccion");
+                registros[5]=rs.getString("DPI");
+                registros[6]=rs.getString("email");
+                registros[7]=rs.getString("NIT");
                  modelo.addRow(registros);
              } 
              tbclientes.setModel(modelo);
         } catch (SQLException ex) {
-            Logger.getLogger(clientes.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Bestudiantes.class.getName()).log(Level.SEVERE, null, ex);
         }
        
         
@@ -77,7 +77,7 @@ DefaultTableModel modelo;
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("CLIENTES");
+        setTitle("Registro de Estudiantes");
 
         jLabel1.setText("Buscar Cliente:");
 
@@ -122,7 +122,7 @@ DefaultTableModel modelo;
         jScrollPane1.setViewportView(tbclientes);
 
         Btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevoo (2).png"))); // NOI18N
-        Btnregistrar.setText("Registrar Clientes");
+        Btnregistrar.setText("Registar Estudiantes");
         Btnregistrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevoo (1).png"))); // NOI18N
         Btnregistrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         Btnregistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -205,55 +205,16 @@ private void txtbusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t
 
 private void BtnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnregistrarActionPerformed
 // TODO add your handling code here:
-    try {
-        IngresoCliente ingcli= new IngresoCliente();
-        Principal.jdpescritorio.add(ingcli);
-        ingcli.toFront();
-        ingcli.setVisible(true);
-        this.dispose();
-        
-    } catch (Exception e) {
-    }
-    
-        
-    
-    
-    
 }//GEN-LAST:event_BtnregistrarActionPerformed
 
 private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnenviarActionPerformed
 // TODO add your handling code here:
-     String cod="",nom="",ape="",dni="",dir="",ruc="";
-    int fila = tbclientes.getSelectedRow();
-    try {
-        if(fila==-1)
-        {
-            JOptionPane.showMessageDialog(null, "No ha seleccionado ningun dato");
-                  
-        }
-        else
-        {
-         cod =  (String)tbclientes.getValueAt(fila, 0);
-         nom =  (String)tbclientes.getValueAt(fila, 1);
-         ape =  (String)tbclientes.getValueAt(fila, 2);
-         dni =  (String)tbclientes.getValueAt(fila, 4);
-         ruc =  (String)tbclientes.getValueAt(fila, 6);
-         dir=  (String)tbclientes.getValueAt(fila, 8);
-         
-         Boleta.txtcod.setText(cod);
-         Boleta.txtnomape.setText(nom+"   "+ape);
-         Boleta.txtdire.setText(dir);
-         Boleta.txtdni.setText(dni);
-        
-         this.dispose();
-         
-        }
-    } catch (Exception e) {
-    }
+    
+    
 }//GEN-LAST:event_mnenviarActionPerformed
 
     private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
-    String cod="",nom="",ape="",dni="",dir="",ruc="";
+    String cod="",nom="",nt="",tel="",dir="";
     int fila = tbclientes.getSelectedRow();
     try {
         if(fila==-1)
@@ -265,15 +226,17 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         {
          cod =  (String)tbclientes.getValueAt(fila, 0);
          nom =  (String)tbclientes.getValueAt(fila, 1);
-         ape =  (String)tbclientes.getValueAt(fila, 2);
-         dni =  (String)tbclientes.getValueAt(fila, 4);
-         ruc =  (String)tbclientes.getValueAt(fila, 6);
-         dir=  (String)tbclientes.getValueAt(fila, 8);
+         tel =  (String)tbclientes.getValueAt(fila, 3);
+         dir=   (String)tbclientes.getValueAt(fila, 4);
+         nt =   (String)tbclientes.getValueAt(fila, 7);
          
-         Boleta.txtcod.setText(cod);
-         Boleta.txtnomape.setText(nom+"   "+ape);
-         Boleta.txtdire.setText(dir);
-         Boleta.txtdni.setText(dni);
+         
+         
+         Factura.carne.setText(cod);
+         Factura.nombre.setText(nom);
+         Factura.nit.setText(nt);
+         Factura.tele.setText(tel);
+         Factura.direccion.setText(dir);
         
          this.dispose();
          
