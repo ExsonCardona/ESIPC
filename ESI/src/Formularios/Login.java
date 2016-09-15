@@ -74,7 +74,7 @@ public class Login extends javax.swing.JFrame {
             Menu men= new Menu();
             men.setVisible(true);
             men.pack();
-            Menu.lbuser.setText(usuario);
+            //Menu.lbuser.setText(usuario);
         }
         
      if((!cap.equals("Administrador"))&& (!cap.equals("Instructor")))
