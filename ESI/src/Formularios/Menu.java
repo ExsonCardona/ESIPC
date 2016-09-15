@@ -286,7 +286,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+
+        Estudiante estud= new Estudiante();
+        jDesktopPane1.add(estud);
+        estud.show();
+        
+        
+// TODO add your handling code here:
       
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
