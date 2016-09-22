@@ -1,39 +1,46 @@
-
 package Formularios;
 
 import Conexion.conectar;
+import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.*;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 public class Bestudiantes extends javax.swing.JInternalFrame {
 DefaultTableModel modelo;
+ private TableRowSorter trsFiltro;
     /** Creates new form ClientesB */
     public Bestudiantes() {
         initComponents();
         mostrarclientes("");
+
     }
     void mostrarclientes(String valor)
     {
-        String[]titulos={"Carne","Nombre","Fecha Nacimiento","Telefono","Direccion","DPI","EMAIL","NIT"} ;  
+        String[]titulos={"Carne","Nombre","NIT","Email","Curso","Costo Mensual","Costo Anual","Codigo Curso"} ;  
         String []registros= new String[8];
         modelo=new DefaultTableModel(null,titulos);
-        String Sql="SELECT * FROM estudiante WHERE CONCAT(carne,Nombre,Fecha_nac,Telefono,Direccion,DPI,email,NIT) LIKE '%"+valor+"%'";
+        String Sql= "call consulta()";
+     
        
         try {
              Statement st = cn.createStatement();
              ResultSet rs = st.executeQuery(Sql);
              while(rs.next())
              {
-                registros[0]=rs.getString("carne");
-                registros[1]=rs.getString("Nombre");  
-                registros[2]=rs.getString("Fecha_nac");
-                registros[3]=rs.getString("Telefono");
-                registros[4]=rs.getString("Direccion");
-                registros[5]=rs.getString("DPI");
-                registros[6]=rs.getString("email");
-                registros[7]=rs.getString("NIT");
+                registros[0]=rs.getString("e.carne");
+                registros[1]=rs.getString("e.Nombre");  
+                registros[2]=rs.getString("e.nit");
+                registros[3]=rs.getString("e.email");
+                registros[4]=rs.getString("c.curso");
+                registros[5]=rs.getString("c.costo_mensual");
+                registros[6]=rs.getString("c.costo_total");
+                registros[7]=rs.getString("c.codigo");
                  modelo.addRow(registros);
              } 
              tbclientes.setModel(modelo);
@@ -59,11 +66,11 @@ DefaultTableModel modelo;
         mnenviar = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnbus = new javax.swing.JButton();
         txtbus = new javax.swing.JTextField();
+        Btnregistrar = new javax.swing.JButton();
+        comboFiltro = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbclientes = new javax.swing.JTable();
-        Btnregistrar = new javax.swing.JButton();
 
         mnenviar.setText("Enviar Datos");
         mnenviar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,16 +88,6 @@ DefaultTableModel modelo;
 
         jLabel1.setText("Buscar Cliente:");
 
-        btnbus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cargar (1).png"))); // NOI18N
-        btnbus.setText("Mostrar Todo");
-        btnbus.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cargar (2).png"))); // NOI18N
-        btnbus.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnbus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbusActionPerformed(evt);
-            }
-        });
-
         txtbus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtbusActionPerformed(evt);
@@ -99,6 +96,26 @@ DefaultTableModel modelo;
         txtbus.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtbusKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtbusKeyTyped(evt);
+            }
+        });
+
+        Btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevoo (2).png"))); // NOI18N
+        Btnregistrar.setText("Registar Estudiantes");
+        Btnregistrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevoo (1).png"))); // NOI18N
+        Btnregistrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Btnregistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnregistrarActionPerformed(evt);
+            }
+        });
+
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Carné", "Nombre", "NIT" }));
+        comboFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFiltroActionPerformed(evt);
             }
         });
 
@@ -121,51 +138,42 @@ DefaultTableModel modelo;
         });
         jScrollPane1.setViewportView(tbclientes);
 
-        Btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevoo (2).png"))); // NOI18N
-        Btnregistrar.setText("Registar Estudiantes");
-        Btnregistrar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevoo (1).png"))); // NOI18N
-        Btnregistrar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        Btnregistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnregistrarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnbus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Btnregistrar)
-                        .addGap(0, 53, Short.MAX_VALUE)))
+                        .addContainerGap(13, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Btnregistrar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 15, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtbus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnbus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Btnregistrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Btnregistrar))
                 .addContainerGap())
         );
 
@@ -182,16 +190,11 @@ DefaultTableModel modelo;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-private void btnbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbusActionPerformed
-// TODO add your handling code here:
-    mostrarclientes("");
-}//GEN-LAST:event_btnbusActionPerformed
 
 private void txtbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbusActionPerformed
 // TODO add your handling code here:
@@ -200,7 +203,8 @@ private void txtbusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
 private void txtbusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusKeyReleased
 // TODO add your handling code here:
-    mostrarclientes(txtbus.getText());
+ 
+
 }//GEN-LAST:event_txtbusKeyReleased
 
 private void BtnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnregistrarActionPerformed
@@ -214,8 +218,10 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_mnenviarActionPerformed
 
     private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
-    String cod="",nom="",nt="",tel="",dir="";
+    String cod="",nom="",nt="",tel="",dir="",sub;
     int fila = tbclientes.getSelectedRow();
+    DefaultTableModel tabladet = (DefaultTableModel) Factura.tbdet1.getModel();
+         String[]  dato=new String[4];
     try {
         if(fila==-1)
         {
@@ -227,27 +233,75 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
          cod =  (String)tbclientes.getValueAt(fila, 0);
          nom =  (String)tbclientes.getValueAt(fila, 1);
          tel =  (String)tbclientes.getValueAt(fila, 3);
-         dir=   (String)tbclientes.getValueAt(fila, 4);
-         nt =   (String)tbclientes.getValueAt(fila, 7);
+         dir=   (String)tbclientes.getValueAt(fila, 7);
+         nt =   (String)tbclientes.getValueAt(fila, 2);
+         sub=(String)tbclientes.getValueAt(fila, 5);
+          String codins=tbclientes.getValueAt(fila, 4).toString();
+          String desins=tbclientes.getValueAt(fila, 5).toString();
+          String preins=tbclientes.getValueAt(fila, 6).toString();
          
          
-         
-         Factura.carne.setText(cod);
+         Factura.carnee.setDisabledTextColor(Color.blue);
+         Factura.carnee.setText(cod);
+         Factura.nombre.setDisabledTextColor(Color.blue);
          Factura.nombre.setText(nom);
+         Factura.nit.setDisabledTextColor(Color.blue);
          Factura.nit.setText(nt);
+         Factura.tele.setDisabledTextColor(Color.blue);
          Factura.tele.setText(tel);
+         Factura.direccion.setDisabledTextColor(Color.blue);
          Factura.direccion.setText(dir);
+         Factura.txtsubtotal.setText(sub);
+         dato[0]=codins;
+         dato[2]=desins;
+         dato[1]=preins;
+           
+            
+            tabladet.addRow(dato);
         
+            Factura.tbdet1.setModel(tabladet);
          this.dispose();
          
         }
     } catch (Exception e) {
     }
     }//GEN-LAST:event_tbclientesMouseClicked
+    public void filtro() {
+        int columnaABuscar = 0;
+        if (comboFiltro.getSelectedItem() == "Carne") {
+            columnaABuscar = 0;
+        }
+        if (comboFiltro.getSelectedItem().toString() == "Nombre") {
+            columnaABuscar = 1;
+        }
+        if (comboFiltro.getSelectedItem() == "NIT") {
+            columnaABuscar = 2;
+        }
+        trsFiltro.setRowFilter(RowFilter.regexFilter(txtbus.getText(), columnaABuscar));
+    }
+
+
+    private void comboFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboFiltroActionPerformed
+
+    private void txtbusKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusKeyTyped
+        // TODO add your handling code here:
+        txtbus.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtbus.getText());
+                txtbus.setText(cadena);
+                repaint();
+                filtro();
+            }
+        });
+        trsFiltro = new TableRowSorter(tbclientes.getModel());
+        tbclientes.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_txtbusKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btnregistrar;
-    private javax.swing.JButton btnbus;
+    private javax.swing.JComboBox comboFiltro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;

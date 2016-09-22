@@ -53,22 +53,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ESICURSO`.`Colegiatura`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ESICURSO`.`Colegiatura` (
-  `id` INT NOT NULL,
-  `Colegiatura` DOUBLE NULL,
-  `Mes` DATE NULL,
-  `Inscripcion` DOUBLE NULL,
-  `Mora` DOUBLE NULL,
-  `Total` DOUBLE NULL,
-  `Feha_pago` VARCHAR(45) NULL,
-  `Descuento` FLOAT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `ESICURSO`.`Instructor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ESICURSO`.`Instructor` (
@@ -90,15 +74,33 @@ ENGINE = InnoDB;
 -- Table `ESICURSO`.`Curso`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ESICURSO`.`Curso` (
-  `id` INT NOT NULL,
-  `Codigo` VARCHAR(105) NULL,
-  `Nombre` VARCHAR(250) NULL,
+  `Codigo` VARCHAR(105) NOT NULL,
+  `Curso` VARCHAR(250) NULL,
   `Costo_mensual` DOUBLE NULL,
-  `observacion` VARCHAR(250) NULL,
-  `Costo_anual` DOUBLE NULL,
+  `Costo_total` DOUBLE NULL,
   `Horario` VARCHAR(50) NULL,
+  `Fecha_inicio` DATE NULL,
+  `fecha_final` DATE NULL,
   `Instructor_id` INT NOT NULL,
   `Estudiante_Carne` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`Codigo`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `ESICURSO`.`Factura`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `ESICURSO`.`Factura` (
+  `id` INT NOT NULL,
+  `NumFactura` VARCHAR(100) NULL,
+  `Fecha` DATE NULL,
+  `Mes` VARCHAR(45) NULL,
+  `Subtotal` DOUBLE NULL,
+  `Descuento` DOUBLE NULL,
+  `Mora` DOUBLE NULL,
+  `Total` DOUBLE NULL,
+  `Estudiante_Carne` VARCHAR(100) NOT NULL,
+  `Curso_Codigo` VARCHAR(105) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -112,8 +114,8 @@ CREATE TABLE IF NOT EXISTS `ESICURSO`.`Nota` (
   `Parcial` VARCHAR(105) NULL,
   `Nota` DOUBLE NULL,
   `Nota_final` DOUBLE NULL,
-  `Curso_id` INT NOT NULL,
   `Estudiante_Carne` VARCHAR(100) NOT NULL,
+  `Curso_Codigo` VARCHAR(105) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -130,12 +132,19 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `ESICURSO`.`Detalle`
+-- Table `ESICURSO`.`Temporal`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `ESICURSO`.`Detalle` (
+CREATE TABLE IF NOT EXISTS `ESICURSO`.`Temporal` (
   `id` INT NOT NULL,
+  `NumFactura` VARCHAR(100) NULL,
+  `Fecha` DATE NULL,
+  `Mes` VARCHAR(45) NULL,
+  `Subtotal` DOUBLE NULL,
+  `Descuento` DOUBLE NULL,
+  `Mora` DOUBLE NULL,
+  `Total` DOUBLE NULL,
   `Estudiante_Carne` VARCHAR(100) NOT NULL,
-  `Colegiatura_id` INT NOT NULL,
+  `Curso_Codigo` VARCHAR(105) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
