@@ -1,0 +1,11 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `consulta`()
+    NO SQL
+SELECT e.carne, e.Nombre, e.Nit, e.mail, c.curso, c.costo_mensual, c.costo_anual, c.horario
+FROM estudiante e
+INNER JOIN curso c ON e.carne = c.estudiante_carne
+
+
+insert into (NumFactura,Fecha,Mes,Subtotal,
+Descuento,Mora,Total,Estudiante_carne,
+Curso_codigo)values (numero,fech,
+mess,subt,descu,morr,tot,carne,codigo);
