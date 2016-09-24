@@ -5,6 +5,14 @@
  */
 package Formularios;
 
+import Conexion.conectar;
+import java.sql.Connection;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Exson Cardona
@@ -345,6 +353,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
+        try {
+            
+            
+            JasperReport reportes=JasperCompileManager.compileReport("Recibo.jasper");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null,cc.conexion());
+            JasperViewer.viewReport(print);
+           
+            
+        } catch (Exception e) {
+           
+        }
       
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
@@ -428,4 +447,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
+conectar cc=new conectar();
+   Connection cn= cc.conexion();
 }
