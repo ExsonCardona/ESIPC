@@ -593,10 +593,10 @@ public class Factura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_carneeActionPerformed
 
     private void btnclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientesActionPerformed
-//    Bestudiantes cli = new Bestudiantes();
-  //  Menu.jDesktopPane1.add(cli);
-    //cli.toFront();
-    //cli.setVisible(true);        // TODO add your handling code here:
+    Bestudiantes cli = new Bestudiantes();
+     Menu.jDesktopPane1.add(cli);
+     cli.toFront();
+     cli.setVisible(true);        // TODO add your handling code here:
         
 
     }//GEN-LAST:event_btnclientesActionPerformed
