@@ -119,6 +119,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(jMenuItem4);
 
         jMenuItem16.setText("Notas");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem16);
 
         jMenuItem17.setText("Cursos");
@@ -352,6 +357,13 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+         Nota facc= new Nota();
+        jDesktopPane1.add(facc);
+        facc.show();
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     /**
      * @param args the command line arguments

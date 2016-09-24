@@ -104,7 +104,7 @@ public class Factura extends javax.swing.JInternalFrame {
     void temporal(){
           PreparedStatement ps;
     try {
-    ps=cn.prepareCall("call tempo(?,?,?,?,?,?,?,?,?)");
+    ps=cn.prepareCall("call Tempo(?,?,?,?,?,?,?,?,?)");
     ps.setString(1,this.txtfac.getText());
     ps.setString(2,this.txtfec.getText());
     ps.setString(3,this.Mes.getSelectedItem().toString());
@@ -609,7 +609,7 @@ public class Factura extends javax.swing.JInternalFrame {
   }
   else
   {
-   //temporal();     
+   temporal();     
    factura();
    JOptionPane.showMessageDialog(this, "Reporte Guardado");
     }//GEN-LAST:event_btnguardarActionPerformed

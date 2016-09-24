@@ -4,21 +4,16 @@
  * and open the template in the editor.
  */
 package Formularios;
+
 import Conexion.conectar;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.awt.Color;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 
 
