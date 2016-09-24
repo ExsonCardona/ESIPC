@@ -311,5 +311,5 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JTextField txtbus;
     // End of variables declaration//GEN-END:variables
 conectar cc= new conectar();
-    Connection cn = cc.conexion();
+Connection cn = cc.conexion();
 }

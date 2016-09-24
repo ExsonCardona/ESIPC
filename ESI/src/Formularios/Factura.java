@@ -609,7 +609,7 @@ public class Factura extends javax.swing.JInternalFrame {
   }
   else
   {
-   temporal();     
+   //temporal();     
    factura();
    JOptionPane.showMessageDialog(this, "Reporte Guardado");
     }//GEN-LAST:event_btnguardarActionPerformed

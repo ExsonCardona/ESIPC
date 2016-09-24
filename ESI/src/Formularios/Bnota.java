@@ -1,6 +1,6 @@
-package Form;
+package Formularios;
 
-import Conect.conectar;
+import Conexion.conectar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.*;
