@@ -83,7 +83,7 @@ public class Factura extends javax.swing.JInternalFrame {
      void factura(){
          PreparedStatement ps;
     try {
-    ps=cn.prepareCall("call facturas(?,?,?,?,?,?,?,?,?)");
+    ps=cn.prepareCall("call fac(?,?,?,?,?,?,?,?,?)");
     ps.setString(1,this.txtfac.getText());
     ps.setString(2,this.txtfec.getText());
     ps.setString(3,this.Mes.getSelectedItem().toString());
@@ -309,7 +309,7 @@ public class Factura extends javax.swing.JInternalFrame {
 
         jLabel17.setText("Nº");
 
-        txtfac.setText("123");
+        txtfac.setText("FAC01");
         txtfac.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
