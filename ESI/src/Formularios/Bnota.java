@@ -24,7 +24,7 @@ DefaultTableModel modelo;
         String[]titulos={"Carne ","Nombre","Curso"} ;  
         String []registros= new String[4];
         modelo=new DefaultTableModel(null,titulos);
-        String Sql= "call Consulta()";
+        String Sql= "call ConsultarNota()";
      
        
         try {
@@ -190,7 +190,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_mnenviarActionPerformed
 
     private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
-    String car="",nom="",cur="",tel="";
+    String car="",nom="",cur="";
     int fila = tbclientes.getSelectedRow();
     
     try {

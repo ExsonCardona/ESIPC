@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07e8bcb9-3c38-47a1-817a-4e9eb2be88e0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     nota.`Fecha_Parcial` AS nota_Fecha_Parcial,
+     nota.`Parcial` AS nota_Parcial,
+     nota.`Nota` AS nota_Nota,
+     nota.`Nota_final` AS nota_Nota_final
+FROM
+     `nota` nota]]>
+	</queryString>
+	<field name="nota_Fecha_Parcial" class="java.sql.Date"/>
+	<field name="nota_Parcial" class="java.lang.String"/>
+	<field name="nota_Nota" class="java.lang.Double"/>
+	<field name="nota_Nota_final" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="8c01d3da-16a8-4e05-b93e-57889e4f7056"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="85" y="0" width="394" height="59" uuid="eb67b3e6-f80b-4349-8997-142d1f773a0d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="44"/>
+				</textElement>
+				<text><![CDATA[Reporte de Notas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="5e3529f6-d1a3-4b86-9cfd-25f1cf82298e"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="11" y="19" width="146" height="32" uuid="3665b08e-d6d1-41d4-b52f-a901821a12c7"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha Parcial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="157" y="19" width="138" height="32" uuid="1804ac8f-c0fb-4b8c-8cf0-46e6f771abe6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Parcial]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="295" y="19" width="138" height="32" uuid="ce2dbc42-0a7f-4bd8-843a-d4f377fbc064"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Nota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="433" y="19" width="119" height="32" uuid="e2e56ee4-e443-4fb0-9427-c558d2cb168f"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Nota Final]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="b86e4cd1-7930-459a-a9a1-be598be4926a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="11" y="0" width="146" height="15" uuid="1ef483dc-f7ed-45b6-9e1f-453e898d06d3"/>
+				<textFieldExpression><![CDATA[$F{nota_Fecha_Parcial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="157" y="0" width="138" height="15" uuid="d70ec628-d71b-4749-abd6-060f5fdfeccb"/>
+				<textFieldExpression><![CDATA[$F{nota_Parcial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="295" y="0" width="138" height="15" uuid="c367dd53-6139-450f-975b-f7fbde69aa4d"/>
+				<textFieldExpression><![CDATA[$F{nota_Nota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="447" y="0" width="105" height="15" uuid="9379dbbf-80bc-4896-990a-db7879e2b4cb"/>
+				<textFieldExpression><![CDATA[$F{nota_Nota_final}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="62c5fa87-8201-4c44-aacb-4503afb2d287"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="7b34dbec-ed7b-4981-8caf-7357268e6164"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="02d86316-54b1-4643-a8f2-62f27817b13e"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="630ba29c-e369-4482-9fbd-76385ebc9979"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

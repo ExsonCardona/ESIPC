@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="17dd80c1-078a-402c-a13e-6c0d70b10a2e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     curso.`Curso` AS curso_Curso,
+     curso.`Costo_mensual` AS curso_Costo_mensual,
+     curso.`Costo_total` AS curso_Costo_total,
+     curso.`Horario` AS curso_Horario,
+     curso.`Fecha_inicio` AS curso_Fecha_inicio,
+     curso.`fecha_final` AS curso_fecha_final
+FROM
+     `curso` curso]]>
+	</queryString>
+	<field name="curso_Curso" class="java.lang.String"/>
+	<field name="curso_Horario" class="java.lang.String"/>
+	<field name="curso_Fecha_inicio" class="java.sql.Date"/>
+	<field name="curso_fecha_final" class="java.sql.Date"/>
+	<field name="curso_Costo_mensual" class="java.lang.Double"/>
+	<field name="curso_Costo_total" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="-20" y="0" width="595" height="64" uuid="6fdb3f4a-c0e0-4c23-b306-f087f6ff64e3"/>
+				<imageExpression><![CDATA["wood.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="39" y="0" width="513" height="64" uuid="55ef4824-d359-46b1-b4da-a2b8654a1755"/>
+				<textElement verticalAlignment="Middle">
+					<font size="54"/>
+				</textElement>
+				<text><![CDATA[Reporte de Cursos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="407cc280-2f93-40ea-a022-1836d128a39a"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="124" height="15" uuid="899a073f-11ce-430b-95c0-96f801252436"/>
+				<text><![CDATA[Curso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="124" y="19" width="60" height="15" uuid="dec178a4-39ed-4a53-b1ca-06db3be80ab3"/>
+				<text><![CDATA[Horario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="19" width="92" height="15" uuid="e1898a2b-95cf-4ac7-9483-5f62bc4909cc"/>
+				<text><![CDATA[Fecha Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="296" y="19" width="92" height="15" uuid="a08d71b4-291f-4e6d-8f3d-b0d25839331f"/>
+				<text><![CDATA[Fecha Final]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="388" y="19" width="92" height="15" uuid="1f038757-fdfe-435e-bd16-9d48c0734fca"/>
+				<text><![CDATA[Costo Mensual]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="480" y="19" width="72" height="15" uuid="76fef361-4add-4c6b-8672-f7e6a23b3038"/>
+				<text><![CDATA[Costo Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="3fe30efc-2326-42fe-ae56-05d9d0f782f9"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="124" height="15" uuid="b5e62e61-d5a5-4264-a83b-6a742744c8a5"/>
+				<textFieldExpression><![CDATA[$F{curso_Curso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="124" y="0" width="60" height="15" uuid="726ce532-0016-4f65-960a-bf82604ea031"/>
+				<textFieldExpression><![CDATA[$F{curso_Horario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="184" y="0" width="92" height="15" uuid="4bfbbc0e-951e-48af-b7a6-aff0e555049e"/>
+				<textFieldExpression><![CDATA[$F{curso_Fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="296" y="0" width="92" height="15" uuid="e57c675a-2b6e-4d2e-b3b1-78d4f3b5b907"/>
+				<textFieldExpression><![CDATA[$F{curso_fecha_final}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="411" y="0" width="69" height="15" uuid="5ad6b34b-5545-40fe-9a1d-4bd60edfde19"/>
+				<textFieldExpression><![CDATA[$F{curso_Costo_mensual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="494" y="0" width="58" height="15" uuid="79e3fb43-3ece-466d-9ad2-c7e734c702f5"/>
+				<textFieldExpression><![CDATA[$F{curso_Costo_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="4285e7d0-9543-4d68-98b0-29fee11af82c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="a371dbf4-b6ad-4ea5-be5a-7635b1300376"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="7a400f97-b501-4ef3-95b0-bf9fd425e629"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="8103e13b-8cb3-402a-93e7-3fe7af998b98"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -178,6 +178,11 @@ public class Factura extends javax.swing.JInternalFrame {
         btneliminar = new javax.swing.JButton();
         imprimir = new javax.swing.JButton();
 
+        setClosable(true);
+        setForeground(java.awt.Color.green);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("Facturacion");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());

@@ -60,6 +60,9 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -75,7 +78,7 @@ public class Menu extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 597, Short.MAX_VALUE)
+            .addGap(0, 599, Short.MAX_VALUE)
         );
 
         jMenu4.setText("Opciones");
@@ -135,6 +138,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.add(jMenuItem16);
 
         jMenuItem17.setText("Cursos");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem17);
 
         jMenuBar1.add(jMenu2);
@@ -220,7 +228,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem6);
 
-        jMenuItem12.setText("Profesores");
+        jMenuItem12.setText("Instructor");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -251,6 +259,30 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem15);
+
+        jMenuItem18.setText("Departamento");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem18);
+
+        jMenuItem19.setText("Municipio");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem19);
+
+        jMenuItem20.setText("Login");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem20);
 
         jMenuBar1.add(jMenu6);
 
@@ -288,8 +320,8 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
         Estudiante estud= new Estudiante();
-        jDesktopPane1.add(estud);
-        estud.show();
+       jDesktopPane1.add(estud);
+       estud.show();
         
         
 // TODO add your handling code here:
@@ -298,6 +330,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
+       RegistroInstructor f= new RegistroInstructor();
+        jDesktopPane1.add(f);
+        f.show();
+        
       
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -347,48 +383,130 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-
-     
-
+         try {
+            conectar cc= new conectar();
+            
+            JasperReport reportes=JasperCompileManager.compileReport("Estudiante.jrxml");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null, cc.conexion());
+            JasperViewer.viewReport(print);
+            
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-       
+        try {
+            conectar cc= new conectar();
+            
+            JasperReport reportes=JasperCompileManager.compileReport("Instructor.jrxml");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null, cc.conexion());
+            JasperViewer.viewReport(print);
+            
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
         try {
+            conectar cc= new conectar();
             
-            
-            JasperReport reportes=JasperCompileManager.compileReport("Recibo.jasper");
-            JasperPrint print=JasperFillManager.fillReport(reportes, null,cc.conexion());
+            JasperReport reportes=JasperCompileManager.compileReport("Factura.jrxml");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null, cc.conexion());
             JasperViewer.viewReport(print);
-           
             
         } catch (Exception e) {
-           
+            System.out.printf(e.getMessage());
         }
       
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-       
+       try {
+            conectar cc= new conectar();
+            
+            JasperReport reportes=JasperCompileManager.compileReport("Curso.jrxml");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null, cc.conexion());
+            JasperViewer.viewReport(print);
+            
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
-       
+        try {
+            conectar cc= new conectar();
+            
+            JasperReport reportes=JasperCompileManager.compileReport("Nota.jrxml");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null, cc.conexion());
+            JasperViewer.viewReport(print);
+            
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
-         Nota facc= new Nota();
-        jDesktopPane1.add(facc);
-        facc.show();
+        Nota not= new Nota();
+       jDesktopPane1.add(not);
+       not.show();
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+         try {
+            conectar cc= new conectar();
+            
+            JasperReport reportes=JasperCompileManager.compileReport("Departamento.jrxml");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null, cc.conexion());
+            JasperViewer.viewReport(print);
+            
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        try {
+            conectar cc= new conectar();
+            
+            JasperReport reportes=JasperCompileManager.compileReport("Municipio.jrxml");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null, cc.conexion());
+            JasperViewer.viewReport(print);
+            
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+         try {
+            conectar cc= new conectar();
+            
+            JasperReport reportes=JasperCompileManager.compileReport("Login.jrxml");
+            JasperPrint print=JasperFillManager.fillReport(reportes, null, cc.conexion());
+            JasperViewer.viewReport(print);
+            
+        } catch (Exception e) {
+            System.out.printf(e.getMessage());
+        }
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+       Cursos cur= new Cursos();
+       jDesktopPane1.add(cur);
+       cur.show();
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -415,6 +533,12 @@ public class Menu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -444,7 +568,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

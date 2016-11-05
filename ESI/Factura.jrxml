@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="93210ed8-78ad-48ea-8fe0-eb3cf47a24ee">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="3"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     factura.`NumFactura` AS factura_NumFactura,
+     factura.`Fecha` AS factura_Fecha,
+     factura.`Mes` AS factura_Mes,
+     factura.`Subtotal` AS factura_Subtotal,
+     factura.`Descuento` AS factura_Descuento,
+     factura.`Mora` AS factura_Mora,
+     factura.`Total` AS factura_Total,
+     factura.`Estudiante_Carne` AS factura_Estudiante_Carne,
+     factura.`Curso_Codigo` AS factura_Curso_Codigo
+FROM
+     `factura` factura]]>
+	</queryString>
+	<field name="factura_NumFactura" class="java.lang.String"/>
+	<field name="factura_Fecha" class="java.sql.Date"/>
+	<field name="factura_Mes" class="java.lang.String"/>
+	<field name="factura_Descuento" class="java.lang.Double"/>
+	<field name="factura_Mora" class="java.lang.Double"/>
+	<field name="factura_Subtotal" class="java.lang.Double"/>
+	<field name="factura_Total" class="java.lang.Double"/>
+	<field name="factura_Estudiante_Carne" class="java.lang.String"/>
+	<field name="factura_Curso_Codigo" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="113" y="0" width="569" height="107" uuid="1163e8a4-a823-4ab4-b84e-3698535f3c35"/>
+				<textElement verticalAlignment="Middle">
+					<font size="60" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Reporte de Facturas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="5b8fe0cc-880a-4a4e-80cb-e6ee2495190b"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="78" height="30" forecolor="#736343" uuid="f5eeacf6-6125-4fe9-9e1f-9e03e7d5679a"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Numero]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="78" y="0" width="104" height="30" forecolor="#736343" uuid="a8d66fa6-228e-4432-9111-300b06c09613"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="198" y="0" width="101" height="30" forecolor="#736343" uuid="df049b64-2cb3-45b7-8e54-3ec2f9b12ef3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="299" y="0" width="95" height="30" forecolor="#736343" uuid="55cb1ddf-2dd3-456a-a99b-e993870beaf4"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Descuento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="394" y="1" width="74" height="29" forecolor="#736343" uuid="38d8ed29-31a1-47b1-89a2-0c31cc286ce8"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Mora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="468" y="0" width="90" height="30" forecolor="#736343" uuid="45f92312-2157-4bac-b17d-9d3c5a84ee15"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="558" y="0" width="75" height="30" forecolor="#736343" uuid="9498f42f-f003-4f0f-9f7d-6a61a8a992de"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="633" y="0" width="79" height="30" forecolor="#736343" uuid="99c64562-d871-447e-91ca-afb3164f19d3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Carne Estudiante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="734" y="0" width="67" height="30" forecolor="#736343" uuid="97fcdcd9-e90f-4ce6-b4e6-863869fa5fca"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Código Curso]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="-1" y="0" width="802" height="15" uuid="4d6bb3bd-856b-443e-a398-2d32cfa84ade"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="79" height="15" uuid="f03d2030-9a19-43bd-b4a0-5eb3bdfbcf54"/>
+					<textFieldExpression><![CDATA[$F{factura_NumFactura}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="312" y="0" width="83" height="15" uuid="9e7ae3e5-1c94-478e-8c8b-e6dafab55a25"/>
+					<textFieldExpression><![CDATA[$F{factura_Descuento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="405" y="0" width="64" height="15" uuid="30d4adb4-0640-4e30-b34c-e35123ae5b60"/>
+					<textFieldExpression><![CDATA[$F{factura_Mora}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="480" y="0" width="78" height="15" uuid="ad469343-22db-47ac-9ef7-ef712f83faa5"/>
+					<textFieldExpression><![CDATA[$F{factura_Subtotal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="559" y="0" width="74" height="15" uuid="984f5af6-06ce-48a0-b37d-a9af5df1f378"/>
+					<textFieldExpression><![CDATA[$F{factura_Total}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="633" y="0" width="79" height="15" uuid="07c7acdf-27b9-4d0c-806e-def331c2b5a5"/>
+					<textFieldExpression><![CDATA[$F{factura_Estudiante_Carne}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="735" y="0" width="66" height="15" uuid="95d3d183-45ae-4912-9067-2ed5cfaf748e"/>
+					<textFieldExpression><![CDATA[$F{factura_Curso_Codigo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="79" y="0" width="104" height="15" uuid="2b0b7cf1-936b-4e9d-8fb5-a39912c384c2"/>
+					<textFieldExpression><![CDATA[$F{factura_Fecha}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="199" y="0" width="101" height="15" uuid="941dfdf8-f146-4d7e-92e7-01dd2de44896"/>
+					<textFieldExpression><![CDATA[$F{factura_Mes}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="257ed594-28e6-43a8-b0d5-75e248b75d65"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="4fcfb1c9-6ef4-4909-851b-0422100d8fc8"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="47050e03-0fab-4b97-9415-81de9fa830d6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="f5d8332c-b94f-4668-9462-8c9d7adc36dd"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="bd684c9f-caf4-4f51-9309-639d7e2d9a44"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
